@@ -106,7 +106,6 @@
                       </form>
                     </div>
                     <script>
-                      
                       function simular(){
                           $("#simular").on("click", function(){
                               let nameInvest = document.querySelector("#valor-invest");
@@ -117,20 +116,27 @@
 
                               let nameRisco = document.querySelector("#risco");
                               let risco = nameRisco.value;
-                              
-                              if(risco == 0){
-                              $roi = 0.05 * invest
-                              console.log($roi)
-                              document.getElementById('message-text').value = $roi
-                          }else if(risco == 1){
-                              $roi = 0.1 * invest
-                              console.log($roi)
-                              document.getElementById('message-text').value = $roi
-                          }else if(risco == 2){
-                              $roi = 0.2 * invest
-                              console.log($roi)
-                              document.getElementById('message-text').value = $roi
-                          }
+
+                              if(invest < valor){
+                                document.getElementById('message-text').value = "Error: O valor de investimento é baixo!"
+                                let nameInvest = document.querySelector("#valor-invest");
+                                let invest = nameInvest.value;
+                                }else{                             
+
+                                if(risco == 0){
+                                    $roi = 0.05 * invest
+                                    console.log($roi)
+                                    document.getElementById('message-text').value = $roi
+                                }else if(risco == 1){
+                                    $roi = 0.1 * invest
+                                    console.log($roi)
+                                    document.getElementById('message-text').value = $roi
+                                }else if(risco == 2){
+                                    $roi = 0.2 * invest
+                                    console.log($roi)
+                                    document.getElementById('message-text').value = $roi
+                                }
+                            }
                           })
                       }        
               
