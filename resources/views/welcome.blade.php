@@ -70,9 +70,15 @@
                     </div>
                     <div class="modal-body">
                           <div class="col-md-12 mb-4">
-                              <div class="col-md-6">
-                                  <strong>Valor do projeto:</strong> R$ {{ $projeto->valor }}
+                              <div class="col-md-12">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text">Valor do Projeto R$</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="valorProjeto" value="{{ $projeto->valor }}" readonly>
+                                </div>
                               </div>
+                              <input type="hidden" id="risco" value="{{ $projeto->risco }}">
                               <div class="col-md-6">
                                   <strong>Risco:</strong>
                                   @if ($projeto->risco == 0)
@@ -101,22 +107,26 @@
                     </div>
                     <script>
                       
-                      function simular($risco){
+                      function simular(){
                           $("#simular").on("click", function(){
-                              let name = document.querySelector("#valor-invest");
-                              let invest = name.value;
-                              let risco = $risco;
-                              console.log(invest)
+                              let nameInvest = document.querySelector("#valor-invest");
+                              let invest = nameInvest.value;
+
+                              let nameValor = document.querySelector("#valorProjeto");
+                              let valor = nameValor.value;
+
+                              let nameRisco = document.querySelector("#risco");
+                              let risco = nameRisco.value;
                               
-                              if($risco == 0){
+                              if(risco == 0){
                               $roi = 0.05 * invest
                               console.log($roi)
                               document.getElementById('message-text').value = $roi
-                          }else if($risco == 1){
+                          }else if(risco == 1){
                               $roi = 0.1 * invest
                               console.log($roi)
                               document.getElementById('message-text').value = $roi
-                          }else if($risco == 2){
+                          }else if(risco == 2){
                               $roi = 0.2 * invest
                               console.log($roi)
                               document.getElementById('message-text').value = $roi
@@ -127,7 +137,7 @@
                    </script>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                      <button id="simular" type="button" class="btn btn-primary" onclick="simular({{ $projeto->risco }} );">Simular</button>
+                      <button id="simular" type="button" class="btn btn-primary" onclick="simular()">Simular</button>
                     </div>
                   </div>
                 </div>
